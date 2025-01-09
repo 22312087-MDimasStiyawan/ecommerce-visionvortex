@@ -17,13 +17,11 @@ export default async function DashboardLayout({
     const store = await db.store.findFirst({
         where: {
             id: params.storeId,
-            userId
-        }
-    })
 
-    if (!store) {
-        redirect("/")
-    }
+            userId,
+        }
+    });
+
     return (
         <>
             <div>This is Navbar</div>
