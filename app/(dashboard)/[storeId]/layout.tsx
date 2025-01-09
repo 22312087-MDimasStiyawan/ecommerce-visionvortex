@@ -20,4 +20,14 @@ export default async function DashboardLayout({
             userId
         }
     })
+
+    if (!store) {
+        redirect("/")
+    }
+    return (
+        <>
+            <div>This is Navbar</div>
+            {children}
+        </>
+    )
 }
