@@ -2,6 +2,7 @@
 
 // Mengimpor hook `useStoreModal` untuk mengakses store modal.
 import { useStoreModal } from "@/hooks/use-store-modal";
+import { UserButton } from "@clerk/nextjs";
 
 import { useEffect } from "react";
 
@@ -25,6 +26,10 @@ const setUpPage = () => {
     <div className="p-4">
        {/* Konten dari halaman, menampilkan teks "Root Page". */}
        Root Page
+       <div>
+          <UserButton/>
+       </div>
+       
     </div>
 
   );
