@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import toast from "react-hot-toast";
 
 
 const formSchema = z.object({
@@ -44,8 +45,9 @@ const formSchema = z.object({
             setLoading(true)
             const response = await axios.post('/api/stores', values)
             console.log(response.data)
+            toast.success("Berhasil Membuat Toko")
         } catch (error) {
-            console.log(error)
+            toast.error("Gagal Membuat Toko")
         } finally{
             setLoading(false)
         }
