@@ -23,8 +23,8 @@ export async function POST(req: Request){
                 name,
                 userId
             },
-        });
-
+         });
+    return new NextResponse(JSON.stringify(store), { status: 200 });
     }catch (error){
         console.log("[STORES_POST]", error)
         return new NextResponse("Internal error", {status: 500})

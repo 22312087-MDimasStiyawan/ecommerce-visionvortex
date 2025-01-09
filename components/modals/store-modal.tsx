@@ -1,9 +1,10 @@
 "use client"
 // Mengimpor semua ekspor dari pustaka "zod" ke dalam namespace "z".
 import * as z from "zod";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import { useState } from "react";
 // Mengimpor hook `useStoreModal` yang digunakan untuk mengakses state global modal dari Zustand.
 import { useStoreModal } from "@/hooks/use-store-modal"
 // Mengimpor komponen `Modal` dari path lokal. Komponen ini bertugas untuk menampilkan dialog/modal.
@@ -19,12 +20,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+
 const formSchema = z.object({
     name: z.string().min(1),
 });
 
 // Mendefinisikan komponen fungsional React bernama `StoreModal`.
  export const StoreModal = () => {
+    const [loading, setLoading] = useState(false)
+
     // Mengakses state dan fungsi dari store modal menggunakan hook `useStoreModal`.
     const storeModal = useStoreModal();
 
@@ -36,8 +40,16 @@ const formSchema = z.object({
     });
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        console.log(values);
-        // TODO: Create Store
+        try {
+            setLoading(true)
+            const response = await axios.post('/api/stores', values)
+            console.log(response.data)
+        } catch (error) {
+            console.log(error)
+        } finally{
+            setLoading(false)
+        }
+        
     }
 
     return(
@@ -58,7 +70,10 @@ const formSchema = z.object({
                                     <FormItem>
                                         <FormLabel>Name</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="E-Commerce" {...field}/>
+                                            <Input 
+                                            disabled={loading} 
+                                            placeholder="E-Commerce" 
+                                            {...field}/>
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -66,10 +81,11 @@ const formSchema = z.object({
                             />
                             <div className="pt-6 space-x-2 flex items-center justify-end w-full">
                                 <Button 
+                                    disabled={loading}
                                     variant="outline" 
                                     onClick={storeModal.onClose}>Cancel
                                 </Button>
-                                <Button type="submit">Continue</Button>
+                                <Button disabled={loading} type="submit">Continue</Button>
                             </div>
                         </form>
                     </Form>
