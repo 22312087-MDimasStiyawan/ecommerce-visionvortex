@@ -44,8 +44,9 @@ const formSchema = z.object({
         try {
             setLoading(true)
             const response = await axios.post('/api/stores', values)
-            console.log(response.data)
-            toast.success("Berhasil Membuat Toko")
+            console.log(response.data);
+            toast.success("Berhasil Membuat Toko");
+            window.location.assign(`/${response.data.id}`)
         } catch (error) {
             toast.error("Gagal Membuat Toko")
         } finally{
