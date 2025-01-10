@@ -1,6 +1,7 @@
 "use client";
 
 import * as z from "zod";
+import { useState } from "react";
 import { Store } from "@prisma/client";
 import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -9,8 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Heading } from "@/components/ui/heading";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-
-
+import { Form } from "@/components/ui/form";
 
 interface SettingsFormProps {
     initialData: Store;
@@ -25,10 +25,17 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
     initialData
 }) => {
 
+const [open,setOpen] = useState(false);
+const [loading,setLoading] = useState(false);
+
     const form = useForm<SettingsFormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: initialData
-    })
+    });
+
+    const onSubmit = async (data: SettingsFormValues) =>{
+        console.log(data);
+    }
     return (
        <><div className="flex items-center justify-between">
             <Heading
@@ -43,6 +50,13 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
             </Button>
         </div>
         <Separator />
+        <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
+                <div className="grid grid-cols-3 gap-8">
+
+                </div>
+            </form>
+        </Form>
         </>
     );
 };
