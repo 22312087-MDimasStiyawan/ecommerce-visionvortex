@@ -22,6 +22,7 @@ import {
     FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { AlertModal } from "@/components/modals/alert-modal";
 
 
 
@@ -60,8 +61,30 @@ const [loading,setLoading] = useState(false);
             setLoading(false);
         }
     };
+
+    const onDelete = async () => {
+        try {
+           setLoading(true) 
+           await axios.delete(`/api/stores/${params.storeId}`)
+           router.refresh();
+           router.push("/")
+           toast.success("Store deleted.")
+        } catch (error) {
+            toast.error("Make sure you removed all product and categories first.");
+        }finally{
+            setLoading(false)
+            setOpen(false)
+        }
+    }
     return (
-       <><div className="flex items-center justify-between">
+       <>
+       <AlertModal 
+       isOpen={open}
+       onClose={() => setOpen(false)}
+        onconfirm={onDelete}
+        loading={loading}
+       />
+       <div className="flex items-center justify-between">
             <Heading
                 title="Settings"
                 description="Manage store preferences"
@@ -101,3 +124,7 @@ const [loading,setLoading] = useState(false);
         </>
     );
 };
+
+function success(arg0: string) {
+    throw new Error("Function not implemented.");
+}
