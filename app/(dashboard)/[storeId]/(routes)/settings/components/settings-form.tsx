@@ -52,6 +52,8 @@ const [loading,setLoading] = useState(false);
         try {
             setLoading(true);
             await axios.patch(`api/stores/${params.storeId}`,data);
+            router.refresh();
+            toast.success("store updated.");
         } catch (error) {
             toast.error("Something went wrong.");
         }finally{
