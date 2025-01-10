@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
+import { ApiAlert } from "@/components/ui/api-alert";
 
 
 
@@ -121,10 +122,13 @@ const [loading,setLoading] = useState(false);
                 </button>
             </form>
         </Form>
+        <Separator />
+        <ApiAlert
+         title="NEXT__PUBLIC_API_URL" 
+        description={`${origin}/api/${params.storeId}`}
+        variant="public"
+        />
         </>
     );
 };
 
-function success(arg0: string) {
-    throw new Error("Function not implemented.");
-}
