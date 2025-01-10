@@ -15,7 +15,8 @@ import {
     FormControl,
     FormField,
     FormItem, 
-    FormLabel 
+    FormLabel, 
+    FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
@@ -47,11 +48,13 @@ const [loading,setLoading] = useState(false);
        <><div className="flex items-center justify-between">
             <Heading
                 title="Settings"
-                description="Manage store preferences" />
+                description="Manage store preferences"
+                />
             <Button
+                disabled={loading}
                 variant="destructive"
                 size="icon"
-                onClick={() => { } }
+                onClick={() => setOpen(true) }
             >
                 <Trash className="h-4 w-4" />
             </Button>
@@ -69,11 +72,14 @@ const [loading,setLoading] = useState(false);
                         <FormControl>
                             <Input disabled={loading} placeholder="Store name"{...field} />
                         </FormControl>
+                        <FormMessage />
                     </FormItem>
                  )}
                 />
                 </div>
-                
+                <button disabled={loading} className="ml-auto" type="submit">
+                    save changes
+                </button>
             </form>
         </Form>
         </>
