@@ -8,7 +8,7 @@ const Navbar = () => {
                 <div>Store Switcher</div>
                 <MainNav className="mx-6"/>
                 <div className="ml-auto flex items-center space-x-4">
-                    <UserButton afterSignOutUrl="/"/>
+                    <UserButton />
                 </div>
             </div>
         </div>
