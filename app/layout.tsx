@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ModalProvider } from "@/providers/modal-provider";
 import "./globals.css";
 import { ToasterProvider } from "@/providers/toast-provider";
+import Navbar from "@/components/navbar";
 
 
 const geistSans = Geist({
