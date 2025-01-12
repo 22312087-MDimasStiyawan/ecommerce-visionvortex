@@ -117,16 +117,16 @@ const [loading,setLoading] = useState(false);
                  )}
                 />
                 </div>
-                <button disabled={loading} className="ml-auto" type="submit">
+                <Button disabled={loading} className="ml-auto" type="submit">
                     save changes
-                </button>
+                </Button>
             </form>
         </Form>
         <Separator />
         <ApiAlert
-         title="NEXT__PUBLIC_API_URL" 
-        description={`${origin}/api/${params.storeId}`}
-        variant="public"
+            title="NEXT__PUBLIC_API_URL" 
+            description={`${origin}/api/${params.storeId}`}
+            variant="public"
         />
         </>
     );
