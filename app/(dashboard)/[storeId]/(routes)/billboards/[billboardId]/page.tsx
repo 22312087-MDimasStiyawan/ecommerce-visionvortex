@@ -1,4 +1,5 @@
 import db from "@/lib/db";
+import { BillboardForm } from "./components/billboard-form";
 
 const BillboardPage = async({
     params
@@ -12,8 +13,10 @@ const BillboardPage = async({
     })
 
     return ( 
-        <div>
-            Existing Billboard: {billboard?.label}
+        <div className="flex-col">
+            <div className="flex-1 space-y-4 p-8 pt-6">
+                <BillboardForm initialData={billboard}/>
+            </div>
         </div>
      );
 }
