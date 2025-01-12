@@ -1,7 +1,19 @@
-const BillboardPage = () => {
+import db from "@/lib/db";
+
+const BillboardPage = async({
+    params
+}: {
+    params: {billboardId: string}
+}) => {
+    const billboard = await db.billboard.findUnique({
+        where: {
+            id: params.billboardId
+        }
+    })
+
     return ( 
         <div>
-            Ini merupakan Form untuk Billboard
+            Existing Billboard: {billboard?.label}
         </div>
      );
 }
