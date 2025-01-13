@@ -1,5 +1,8 @@
+import { format, formatDate } from "date-fns"
+
 import db from "@/lib/db";
 import { BillboardClient } from "./components/client";
+import { BillboardColumn } from "./components/columns";
 
 const BillboardsPage = async ({
     params
@@ -13,11 +16,18 @@ const BillboardsPage = async ({
         orderBy: {
             createdAt: 'desc'
         }
-    })
+    });
+
+    const formattedBillboards: BillboardColumn[] = billboards.map((item) => ({
+        id: item.id,
+        label: item.label,
+        createdAt: formatDate(item.createdAt,"MMMM do, yyyy" )
+    }));
+
     return (  
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <BillboardClient data={billboards}/>
+                <BillboardClient data={formattedBillboards}/>
             </div>
         </div>
     );

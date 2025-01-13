@@ -6,10 +6,11 @@ import { useParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
-import { Billboard } from "@prisma/client"
+
+import { BillboardColumn } from "./columns"
 
 interface BillboardClientProps{
-    data: Billboard[]
+    data: BillboardColumn[]
 }
 
 export const BillboardClient: React.FC<BillboardClientProps> = ({
