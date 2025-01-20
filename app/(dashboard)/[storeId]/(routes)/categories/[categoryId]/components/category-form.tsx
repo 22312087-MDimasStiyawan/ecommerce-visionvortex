@@ -23,6 +23,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
+import { 
+    Select, 
+    SelectContent, 
+    SelectTrigger, 
+    SelectValue 
+} from "@/components/ui/select";
 
 
 const formSchema = z. object ({
@@ -119,19 +125,47 @@ const action = initialData ? "Save change" : "Create";
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
                 <div className="grid grid-cols-3 gap-8">
-                 <FormField
-                 control={form.control}
-                 name="name"
-                 render={({field}) => (
-                    <FormItem>
-                        <FormLabel>Name</FormLabel>
-                        <FormControl>
-                            <Input disabled={loading} placeholder="Category name"{...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                 )}
-                />
+                    <FormField
+                    control={form.control}
+                    name="name"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                                <Input disabled={loading} placeholder="Category name"{...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                    />
+                    <FormField
+                    control={form.control}
+                    name="billboardId"
+                    render={({field}) => (
+                        <FormItem>
+                            <FormLabel>Billboard</FormLabel>
+                            <Select 
+                                disabled={loading} 
+                                onValueChange={field.onChange} 
+                                value={field.value} 
+                                defaultValue={field.value}
+                            >
+                                <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue 
+                                            defaultValue={field.value}
+                                            placeholder="Select a Billboard"
+                                        />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+
+                                </SelectContent>
+                            </Select>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                    />
                 </div>
                 <Button disabled={loading} className="ml-auto" type="submit">
                     {action}
