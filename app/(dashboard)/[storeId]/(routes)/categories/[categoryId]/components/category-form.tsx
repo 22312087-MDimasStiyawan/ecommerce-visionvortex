@@ -26,6 +26,7 @@ import { AlertModal } from "@/components/modals/alert-modal";
 import { 
     Select, 
     SelectContent, 
+    SelectItem, 
     SelectTrigger, 
     SelectValue 
 } from "@/components/ui/select";
@@ -44,7 +45,8 @@ interface CategoryFromProps {
 }
 
 export const CategoryForm: React.FC<CategoryFromProps> = ({
-    initialData
+    initialData,
+    billboards
 }) => {
 const params = useParams();
 const router = useRouter();
@@ -160,7 +162,14 @@ const action = initialData ? "Save change" : "Create";
                                     </SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-
+                                    {billboards.map((billboard) => (
+                                        <SelectItem
+                                            key={billboard.id}
+                                            value={billboard.id}
+                                        >
+                                            {billboard.label}
+                                        </SelectItem>
+                                    ))}
                                 </SelectContent>
                             </Select>
                             <FormMessage />
