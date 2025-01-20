@@ -1,9 +1,9 @@
 "use client";
 
 import * as z from "zod";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { useState } from "react";
-import { Category } from "@prisma/client";
+import { Billboard, Category } from "@prisma/client";
 import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -40,6 +40,7 @@ type CategoryFormValues = z. infer<typeof formSchema>;
 
 interface CategoryFromProps {
     initialData: Category | null;
+    billboards: Billboard[];
 }
 
 export const CategoryForm: React.FC<CategoryFromProps> = ({
