@@ -5,47 +5,47 @@ import { NextResponse } from "next/server";
 
 export async function GET(
     req: Request,
-    { params }: { params: { billboardId: string } }
+    { params }: { params: { sizeId: string } }
   ) {
     try {
-      if (!params.billboardId) {
-        return new NextResponse("Papan Iklan id dibutuhkan", { status: 400 });
+      if (!params.sizeId) {
+        return new NextResponse("ukuran id dibutuhkan", { status: 400 });
       }
 
-      const billboard = await db.billboard.findUnique({
+      const size = await db.size.findUnique({
         where: {
-          id: params.billboardId,
+          id: params.sizeId,
         },
       });
   
-      return NextResponse.json(billboard);
+      return NextResponse.json(size);
     } catch (error) {
-      console.log("[BILLBOARD_GET]", error);
+      console.log("[SIZE_GET]", error);
       return new NextResponse("Internal error", { status: 500 });
     }
   }
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { storeId: string, billboardId: string } }
+  { params }: { params: { storeId: string, sizeId: string } }
 ) {
   try {
     const { userId } = await auth();
     const body = await req.json();
 
-    const { label, imageUrl } = body;
+    const { name, value } = body;
 
     if (!userId) {
       return new NextResponse("Unauthenticated", { status: 401 });
     }
-    if (!label) {
-      return new NextResponse("Label menginput nama", { status: 400 });
+    if (!name) {
+      return new NextResponse(" menginput nama", { status: 400 });
     }
-    if (!imageUrl) {
-        return new NextResponse("menginput Gambar Url", { status: 400 });
+    if (!value) {
+        return new NextResponse("menginput Value", { status: 400 });
       }
-    if (!params.billboardId) {
-      return new NextResponse("Papan Iklan Diinputkan", { status: 400 });
+    if (!params.sizeId) {
+      return new NextResponse("Size Diinputkan", { status: 400 });
     }
 
     const storeByUserId =  await db.store.findFirst({
@@ -59,26 +59,26 @@ export async function PATCH(
         return new NextResponse("Unauthorized", {status: 403});
     }
 
-    const billboard = await db.billboard.updateMany({
+    const size = await db.size.updateMany({
       where: {
-        id: params.billboardId,
+        id: params.sizeId,
       },
       data: {
-        label,
-        imageUrl
+        name,
+        value
       },
     });
 
-    return NextResponse.json(billboard);
+    return NextResponse.json(size);
   } catch (error) {
-    console.log("[BILLBOARD_PATCH]", error);
+    console.log("[SIZE_PATCH]", error);
     return new NextResponse("Internal error", { status: 500 });
   }
 }
 
 export async function DELETE(
     req: Request,
-    { params }: { params: { storeId: string, billboardId: string } }
+    { params }: { params: { storeId: string, sizeId: string } }
   ) {
     try {
       const { userId } = await auth();
@@ -88,8 +88,8 @@ export async function DELETE(
         return new NextResponse("Unauthenticated", { status: 401 });
       }
   
-      if (!params.billboardId) {
-        return new NextResponse("Papan Iklan id dibutuhkan", { status: 400 });
+      if (!params.sizeId) {
+        return new NextResponse("id ukuran dibutuhkan", { status: 400 });
       }
 
       const storeByUserId =  await db.store.findFirst({
@@ -103,15 +103,15 @@ export async function DELETE(
         return new NextResponse("Unauthorized", {status: 403});
     }
   
-      const billboard = await db.billboard.deleteMany({
+      const size = await db.size.deleteMany({
         where: {
-          id: params.billboardId,
+          id: params.sizeId,
         },
       });
   
-      return NextResponse.json(billboard);
+      return NextResponse.json(size);
     } catch (error) {
-      console.log("[BILLBOARD_DELETE]", error);
+      console.log("[SIZE_DELETE]", error);
       return new NextResponse("Internal error", { status: 500 });
     }
   }
