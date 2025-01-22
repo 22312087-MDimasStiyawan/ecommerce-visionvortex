@@ -41,16 +41,16 @@ export async function POST(
         }
         
         // Membuat entri baru pada tabel 'store' dalam database.
-        const size = await db.size.create({
+        const color = await db.color.create({
             data: {
                 name,
                 value,
                 storeId: params.storeId
             },
          });
-    return NextResponse.json(size);
+    return NextResponse.json(color);
     }catch (error){
-        console.log("[SIZES_POST]", error)
+        console.log("[COLORS_POST]", error)
         return new NextResponse("Internal error", {status: 500})
     }
 }
@@ -64,14 +64,14 @@ export async function GET(
             return new NextResponse("Id Toko Perlu diinput", {status: 400})
         }
 
-        const size = await db.size.findMany({
+        const color = await db.color.findMany({
             where: {
                 storeId: params.storeId,
             }
          });
-    return NextResponse.json(size);
+    return NextResponse.json(color);
     }catch (error){
-        console.log("[SIZES_GET]", error)
+        console.log("[COLORS_GET]", error)
         return new NextResponse("Internal error", {status: 500})
     }
 }
