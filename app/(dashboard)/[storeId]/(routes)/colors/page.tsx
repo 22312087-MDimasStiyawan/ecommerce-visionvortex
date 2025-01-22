@@ -2,7 +2,7 @@ import { format, formatDate } from "date-fns"
 
 import db from "@/lib/db";
 import { SizesClient } from "./components/client";
-import { SizeColumn } from "./components/columns";
+import { ColorColumn } from "./components/columns";
 
 const ColorsPage = async ({
     params
@@ -18,7 +18,7 @@ const ColorsPage = async ({
         }
     });
 
-    const formattedColors: SizeColumn[] = colors.map((item) => ({
+    const formattedColors: ColorColumn[] = colors.map((item) => ({
         id: item.id,
         name: item.name,
         value: item.value,
