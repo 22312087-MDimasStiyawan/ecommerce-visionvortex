@@ -192,7 +192,7 @@ const action = initialData ? "Simpan Product" : "Buat Product";
                     <FormItem>
                         <FormLabel>Price</FormLabel>
                         <FormControl>
-                            <Input type="number" disabled={loading} placeholder="100000"{...field} />
+                            <Input type="number" disabled={loading} placeholder="Masukkan Harga"{...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
