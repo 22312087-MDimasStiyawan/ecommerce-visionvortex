@@ -5,22 +5,28 @@ import { NextResponse } from "next/server";
 
 export async function GET(
     req: Request,
-    { params }: { params: { billboardId: string } }
+    { params }: { params: { productId: string } }
   ) {
     try {
-      if (!params.billboardId) {
-        return new NextResponse("Papan Iklan id dibutuhkan", { status: 400 });
+      if (!params.productId) {
+        return new NextResponse("Produk id dibutuhkan", { status: 400 });
       }
 
-      const billboard = await db.billboard.findUnique({
+      const product = await db.product.findUnique({
         where: {
-          id: params.billboardId,
+          id: params.productId,
+        },
+        include: {
+          images: true,
+          category: true,
+          size: true,
+          color: true,
         },
       });
   
-      return NextResponse.json(billboard);
+      return NextResponse.json(product);
     } catch (error) {
-      console.log("[BILLBOARD_GET]", error);
+      console.log("[PRODUCT_GET]", error);
       return new NextResponse("Internal error", { status: 500 });
     }
   }
