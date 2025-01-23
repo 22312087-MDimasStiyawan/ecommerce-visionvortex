@@ -89,7 +89,7 @@ model Product {
   category Category @relation("CategoryToProduct", fields: [categoryId], references: [id])
   name String
   price Decimal
-  isFeture Boolean @default(false)
+  isFeatured Boolean @default(false)
   isArchived Boolean @default(false)
   sizeId String
   size Size @relation(fields: [sizeId], references: [id])
