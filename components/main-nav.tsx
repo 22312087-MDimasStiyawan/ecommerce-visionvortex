@@ -6,7 +6,6 @@ import { useParams, usePathname } from "next/navigation"
 
 export function MainNav({
     className,
-
 }: React.HTMLAttributes<HTMLElement>) {
     const pathname = usePathname();
     const params = useParams();
@@ -14,42 +13,42 @@ export function MainNav({
     const routes = [
         {
             href: `/${params.storeId}/`,
-            label: 'Overview',
+            label: 'Ringkasan',
             active: pathname === `/${params.storeId}/`,
         },
         {
             href: `/${params.storeId}/billboards`,
-            label: 'Billboards',
+            label: 'Banner',
             active: pathname === `/${params.storeId}/billboards`,
         },
         {
             href: `/${params.storeId}/categories`,
-            label: 'Categories',
-            active: pathname === `/${params.storeId}/billboards`,
+            label: 'Kategori',
+            active: pathname === `/${params.storeId}/categories`,
         },
         {
             href: `/${params.storeId}/sizes`,
-            label: 'Sizes',
+            label: 'Ukuran',
             active: pathname === `/${params.storeId}/sizes`,
         },
         {
             href: `/${params.storeId}/products`,
-            label: 'Products',
+            label: 'Produk',
             active: pathname === `/${params.storeId}/products`,
         },
         {
             href: `/${params.storeId}/colors`,
-            label: 'Colors',
+            label: 'Warna',
             active: pathname === `/${params.storeId}/colors`,
         },
         {
             href: `/${params.storeId}/orders`,
-            label: 'orders',
+            label: 'Pesanan',
             active: pathname === `/${params.storeId}/orders`,
         },
         {
             href: `/${params.storeId}/settings`,
-            label: 'settings',
+            label: 'Pengaturan',
             active: pathname === `/${params.storeId}/settings`,
         },
     ];
@@ -61,14 +60,19 @@ export function MainNav({
         )}>
             {routes.map((route) => (
                 <Link
-                key={route.href}
-                href={route.href}
-                className={cn(
-                    "text-sm font-medium transition-colors hover:text-primary",
-                    route.active ? "text-black dark:text-white" : "text-muted-foreground"
-                )}
+                    key={route.href}
+                    href={route.href}
+                    className={cn(
+                        "relative text-sm font-medium transition-colors hover:text-primary",
+                        route.active 
+                            ? "text-black dark:text-white font-bold"
+                            : "text-muted-foreground"
+                    )}
                 >
                     {route.label}
+                    {route.active && (
+                        <span className="absolute left-0 bottom-[-4px] w-full h-[2px] bg-blue-500 rounded-full"></span>
+                    )}
                 </Link>
             ))}
         </nav>

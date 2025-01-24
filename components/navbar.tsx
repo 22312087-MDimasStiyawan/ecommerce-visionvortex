@@ -18,17 +18,24 @@ const Navbar = async () => {
         }
     })
 
-    return ( 
-        <div className="border-b">
-            <div className="flex h-16 items-center px-4">
-                <StoreSwitcher items={stores} />
-                <MainNav className="mx-6"/>
-                <div className="ml-auto flex items-center space-x-4">
+    return (
+        <div className="border-b bg-white shadow-sm">
+            <div className="flex h-16 items-center px-4 lg:px-8">
+                {/* Store Switcher */}
+                <div className="flex items-center space-x-4">
+                    <StoreSwitcher items={stores} />
+                </div>
+
+                {/* Main Navigation */}
+                <MainNav className="mx-6 text-gray-600" />
+
+                {/* User Menu */}
+                <div className="ml-auto flex items-center space-x-6">
                     <UserButton />
                 </div>
             </div>
         </div>
-     );
-}
+    );
+};
  
 export default Navbar;
