@@ -55,7 +55,7 @@ const [loading,setLoading] = useState(false);
     const onSubmit = async (data: SettingsFormValues) =>{
         try {
             setLoading(true);
-            await axios.patch(`api/stores/${params.storeId}`,data);
+            await axios.patch(`/api/stores/${params.storeId}`,data);
             router.refresh();
             toast.success("store updated.");
         } catch (error) {
@@ -84,7 +84,7 @@ const [loading,setLoading] = useState(false);
        <AlertModal 
        isOpen={open}
        onClose={() => setOpen(false)}
-        onconfirm={onDelete}
+        onConfirm={onDelete}
         loading={loading}
        />
        <div className="flex items-center justify-between">
