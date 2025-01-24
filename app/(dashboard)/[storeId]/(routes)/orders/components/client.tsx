@@ -7,15 +7,16 @@ import { Button } from "@/components/ui/button"
 import { Heading } from "@/components/ui/heading"
 import { Separator } from "@/components/ui/separator"
 
-import { BillboardColumn, columns } from "./columns"
 import { DataTable } from "@/components/ui/data-table"
 import { ApiList } from "@/components/ui/api-list"
+import { OrderColumn, columns } from "./columns"
+import { Order } from "@prisma/client"
 
-interface BillboardClientProps{
-    data: BillboardColumn[]
+interface OrderClientProps{
+    data: OrderColumn[]
 }
 
-export const BillboardClient: React.FC<BillboardClientProps> = ({
+export const BillboardClient: React.FC<OrderClientProps> = ({
     data
 }) => {
     const router = useRouter();
