@@ -2,7 +2,7 @@ import { format, formatDate } from "date-fns"
 
 import db from "@/lib/db";
 import { formatter } from "@/lib/utils";
-import { BillboardClient } from "./components/client";
+import { OrderClient } from "./components/client";
 import { OrderColumn } from "./components/columns";
 
 
@@ -42,7 +42,7 @@ const OrderPage = async ({
     return (  
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <BillboardClient data={formattedOrders}/>
+                <OrderClient data={formattedOrders}/>
             </div>
         </div>
     );
