@@ -92,9 +92,9 @@ const action = initialData ? "Save change" : "Create";
            await axios.delete(`/api/${params.storeId}/categories/${params.categoryId}`);
            router.refresh();
            router.push(`/${params.storeId}/categories`)
-           toast.success("Category deleted.")
+           toast.success("Kategori Dihapus")
         } catch (error) {
-            toast.error("Make sure you removed all products using this category first.");
+            toast.error("Pastikan Anda telah menghapus semua produk yang menggunakan kategori ini terlebih dahulu.");
         }finally{
             setLoading(false)
             setOpen(false)
@@ -133,9 +133,9 @@ const action = initialData ? "Save change" : "Create";
                     name="name"
                     render={({field}) => (
                         <FormItem>
-                            <FormLabel>Name</FormLabel>
+                            <FormLabel>Nama</FormLabel>
                             <FormControl>
-                                <Input disabled={loading} placeholder="Category name"{...field} />
+                                <Input disabled={loading} placeholder="Nama Kategori"{...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -146,7 +146,7 @@ const action = initialData ? "Save change" : "Create";
                     name="billboardId"
                     render={({field}) => (
                         <FormItem>
-                            <FormLabel>Billboard</FormLabel>
+                            <FormLabel>Banner</FormLabel>
                             <Select 
                                 disabled={loading} 
                                 onValueChange={field.onChange} 
@@ -157,7 +157,7 @@ const action = initialData ? "Save change" : "Create";
                                     <SelectTrigger>
                                         <SelectValue 
                                             defaultValue={field.value}
-                                            placeholder="Select a Billboard"
+                                            placeholder="Pilih Banner"
                                         />
                                     </SelectTrigger>
                                 </FormControl>
